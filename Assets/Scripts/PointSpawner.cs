@@ -25,8 +25,8 @@ public class PointSpawner : MonoBehaviour
 
     private Transform getRandomPosition()
     {
-        randomh = Random.Range(-4, 4);
-        rand = Random.Range(0,2);
+        randomh = Random.Range(-12, 12);
+        rand = Random.Range(0,3);
         Transform spawnPoint = gameObject.transform.GetChild(rand);
         newPos = new Vector3(spawnPoint.position.x, randomh, spawnPoint.position.z);
         spawnhere.position = newPos;

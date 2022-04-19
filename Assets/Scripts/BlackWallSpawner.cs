@@ -22,7 +22,7 @@ public class BlackWallSpawner : MonoBehaviour
     private void instantiateAnotherWall()
     {
         dist = Vector2.Distance(transform.position, currentWall.transform.position);
-        if (dist > 6)
+        if (dist > 12)
         {
             currentWall = Instantiate(miniWall, transform);
         }

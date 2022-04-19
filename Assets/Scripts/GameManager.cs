@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     public float points = 0;
     public float speed = 1;
-
+    public float highscore = 0;
     private void Awake()
     {
         if (instance == null)
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -36,23 +36,31 @@ public class GameManager : MonoBehaviour
         {
             speed += Time.deltaTime * .1f;
         }
+
+        setHighScore();
     }
 
     public void endGame()
     {
         SceneManager.LoadScene("GameOver");
-        resetGame();
     }
 
     public void replay()
     {
+        resetGame();
         SceneManager.LoadScene("gamescene");
+    }
+
+    public void gotoMainScene()
+    {
+        resetGame();
+        SceneManager.LoadScene("StartScene");
     }
 
     public void resetGame()
     {
-        points = 0;
-        speed = 1;
+        instance.points = 0;
+        instance.speed = 1;
     }
 
     public void reverseWorld()
@@ -73,6 +81,23 @@ public class GameManager : MonoBehaviour
     public void quitGame()
     {
         Application.Quit();
+    }
+
+    public void setHighScore() 
+    {
+        if (points > highscore)
+        {
+            highscore = points;
+            PlayerPrefs.SetFloat("highscore", highscore);
+        }
+    }
+
+    public void getHighScore()
+    {
+        if (PlayerPrefs.HasKey("highscore"))
+        {
+            highscore = PlayerPrefs.GetFloat("highscore");
+        }
     }
 
 }

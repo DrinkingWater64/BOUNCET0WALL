@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
     public float force;
     public Rigidbody2D rb;
+    public Sprite whiteball;
+    public Sprite blackball;
     public bool canGoRight = false;
     public bool canGoLeft = false;
     private bool canControl = true;
@@ -15,17 +18,13 @@ public class Player : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         renderer_ = gameObject.GetComponent<SpriteRenderer>();
+        renderer_.sprite = whiteball;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && canControl)
-        {
-            if (canGoRight)
-                goRight();
-            if (canGoLeft)
-                goLeft();
-        }
+        jump();
+       
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             GameManager.instance.boostSpeed();
@@ -34,8 +33,22 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.resetSpeed();
         }
+    }
 
-
+    public void jump()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            int id = touch.fingerId;
+            if (!EventSystem.current.IsPointerOverGameObject(id) && canControl)
+            //{
+                if (canGoRight)
+                    goRight();
+                if (canGoLeft)
+                    goLeft();
+            //}
+        }
     }
 
     private void goRight()
@@ -73,11 +86,11 @@ public class Player : MonoBehaviour
         }
         if(collision.gameObject.name == "Black")
         {
-            renderer_.color = Color.white;
+            renderer_.sprite = whiteball;
         }
         if (collision.gameObject.name == "White")
         {
-            renderer_.color = Color.black;
+            renderer_.sprite = blackball;
         }
 
     }
