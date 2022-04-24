@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     public void jump()
     {
-        if (Input.touchCount > 0)
+        /*if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             int id = touch.fingerId;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
                 if (canGoLeft)
                     goLeft();
             //}
-        }
+        }*/
     }
 
     private void goRight()
@@ -122,6 +122,15 @@ public class Player : MonoBehaviour
     private void OnBecameVisible()
     {
         canControl = true;
+    }
+
+    public void testButton()
+    {
+        Debug.Log("button wroks");
+        if (canGoRight)
+            goRight();
+        if (canGoLeft)
+            goLeft();
     }
 
 }

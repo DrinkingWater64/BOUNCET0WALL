@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     {
         if(speed < 60)
         {
-            speed += Time.deltaTime * .1f;
+            speed += Time.deltaTime * .2f;
         }
 
         setHighScore();
@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour
 
     public void resetGame()
     {
+        if(Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
         instance.points = 0;
         instance.speed = 1;
     }
