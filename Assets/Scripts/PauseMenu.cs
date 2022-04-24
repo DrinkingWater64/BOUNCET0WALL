@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -9,12 +10,21 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenu;
     public GameObject button;
+    public GameObject pauseButton;
     public bool isPaused = false;
     // Start is called before the first frame update
     void Start()
     {
+        Player.onTutorial += handleButtonInteraction;
         pauseMenu.SetActive(false);
+        pauseButton.GetComponent<Button>().interactable = false;
         isPaused = false;
+    }
+
+    private void handleButtonInteraction(Player obj)
+    {
+        pauseButton.GetComponent<Button>().interactable = true;
+        Player.onTutorial += handleButtonInteraction;
     }
 
     // Update is called once per frame
