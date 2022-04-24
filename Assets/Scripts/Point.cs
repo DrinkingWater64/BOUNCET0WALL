@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine;
 public class Point : MonoBehaviour
 {
     // Start is called before the first frame update
+
+
+    public static event Action<Point> onTutorial;
     public ParticleSystem particle;
     public SpriteRenderer renderer_;
     public bool once = true;
@@ -32,6 +36,10 @@ public class Point : MonoBehaviour
             once = false;
             Destroy(renderer_);
             Debug.Log("hit");
+            if(onTutorial != null)
+            {
+                onTutorial(this);
+            }
             GameManager.instance.points += 5;
             Invoke("destroyObj", dur);
         }

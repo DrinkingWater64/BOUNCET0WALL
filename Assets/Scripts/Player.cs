@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
+
+    public static event Action<Player> onTutorial;
+
     public float force;
     public Rigidbody2D rb;
     public Sprite whiteball;
@@ -131,6 +135,11 @@ public class Player : MonoBehaviour
             goRight();
         if (canGoLeft)
             goLeft();
+                        
+        if(onTutorial != null)
+        {
+            onTutorial(this);
+        }
     }
 
 }

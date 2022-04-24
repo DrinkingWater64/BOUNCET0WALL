@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    public static event Action<PauseMenu> onTutorial;
+
     public GameObject pauseMenu;
     public GameObject button;
     public bool isPaused = false;
@@ -29,6 +32,11 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0;
             button.SetActive(false);
             pauseMenu.SetActive(true);
+
+            if (onTutorial != null)
+            {
+                onTutorial(this);
+            }
         }
         else
         {
@@ -36,6 +44,10 @@ public class PauseMenu : MonoBehaviour
             pauseMenu.SetActive(false);
             isPaused = false;
             button.SetActive(true);
+            if (onTutorial != null)
+            {
+                onTutorial(this);
+            }
         }
     }
 

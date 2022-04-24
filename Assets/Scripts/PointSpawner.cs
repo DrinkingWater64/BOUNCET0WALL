@@ -4,20 +4,33 @@ using UnityEngine;
 
 public class PointSpawner : MonoBehaviour
 {
+
+
     public GameObject point;
     public GameObject currentPoint;
     public Transform spawnhere;
     public Vector3 newPos;
     public int rand;
     public float randomh;
+    public bool canPoint;
     private void Start()
     {
-        currentPoint = Instantiate(point, getRandomPosition());
+        PauseMenu.onTutorial += setCanPoint;
+        canPoint = false;
+    }
+
+    private void setCanPoint(PauseMenu obj)
+    {
+        if(obj.isPaused == false)
+        {
+            canPoint = true;
+            PauseMenu.onTutorial -= setCanPoint;
+        }
     }
 
     private void Update()
     {
-        if(currentPoint == null)
+        if(currentPoint == null && canPoint == true)
         {
             currentPoint = Instantiate(point, getRandomPosition());
         }
