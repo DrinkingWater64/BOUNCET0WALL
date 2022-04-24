@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour
     private void handleButtonInteraction(Player obj)
     {
         pauseButton.GetComponent<Button>().interactable = true;
-        Player.onTutorial += handleButtonInteraction;
+        Player.onTutorial -= handleButtonInteraction;
     }
 
     // Update is called once per frame

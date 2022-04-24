@@ -13,14 +13,25 @@ public class Tutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player.onTutorial += handleTapTutorial;
-        PauseMenu.onTutorial += handlePauseTutorial;
-        Point.onTutorial += pointTest;
+        
 
-        bounceText.SetActive(true);
-        pauseText1.SetActive(false);
-        pauseText2.SetActive(false);
-        pointText.SetActive(false);
+        if (PlayerPrefs.GetString("TutorialStatus") == "true")
+        {
+            bounceText.SetActive(false);
+            pauseText1.SetActive(false);
+            pauseText2.SetActive(false);
+            pointText.SetActive(false);
+        }
+        else
+        {
+            Player.onTutorial += handleTapTutorial;
+            PauseMenu.onTutorial += handlePauseTutorial;
+            Point.onTutorial += pointTest;
+            bounceText.SetActive(true);
+            pauseText1.SetActive(false);
+             pauseText2.SetActive(false);
+            pointText.SetActive(false);
+        }
 
     }
 
@@ -29,7 +40,7 @@ public class Tutorial : MonoBehaviour
         Debug.Log("points gained");
         pointText.SetActive(false);
         Point.onTutorial -= pointTest;
-
+        setTutorialStatus();
     }
 
     private void handlePauseTutorial(PauseMenu obj)
@@ -66,5 +77,10 @@ public class Tutorial : MonoBehaviour
         pauseText1.SetActive(true);
         Player.onTutorial -= handleTapTutorial;
 
+    }
+
+    public void setTutorialStatus()
+    {
+        PlayerPrefs.SetString("TutorialStatus", "true");
     }
 }

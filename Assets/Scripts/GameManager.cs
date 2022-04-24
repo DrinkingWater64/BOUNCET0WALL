@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        PlayerPrefs.SetString("TutorialStatus", "false");
     }
 
     void Start()

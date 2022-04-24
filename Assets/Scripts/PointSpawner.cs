@@ -15,8 +15,16 @@ public class PointSpawner : MonoBehaviour
     public bool canPoint;
     private void Start()
     {
-        PauseMenu.onTutorial += setCanPoint;
-        canPoint = false;
+        if (PlayerPrefs.GetString("TutorialStatus") == "false")
+        {
+            PauseMenu.onTutorial += setCanPoint;
+            canPoint = false;
+        }
+        else
+        {
+            canPoint = true;
+        }
+        
     }
 
     private void setCanPoint(PauseMenu obj)
