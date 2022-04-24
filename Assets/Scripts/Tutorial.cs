@@ -28,6 +28,8 @@ public class Tutorial : MonoBehaviour
     {
         Debug.Log("points gained");
         pointText.SetActive(false);
+        Point.onTutorial -= pointTest;
+
     }
 
     private void handlePauseTutorial(PauseMenu obj)
@@ -43,6 +45,8 @@ public class Tutorial : MonoBehaviour
         {
             pauseText2.SetActive(false);
             pointText.SetActive(true);
+            PauseMenu.onTutorial -= handlePauseTutorial;
+
         }
     }
 
