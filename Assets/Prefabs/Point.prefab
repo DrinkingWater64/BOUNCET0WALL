@@ -116,6 +116,7 @@ MonoBehaviour:
   particle: {fileID: 2512780329921796801}
   renderer_: {fileID: 6995811035651755727}
   once: 1
+  clip: {fileID: 8300000, guid: 6a542651c401c96428ea848254dbf226, type: 3}
 --- !u!1 &5874374361424753644
 GameObject:
   m_ObjectHideFlags: 0

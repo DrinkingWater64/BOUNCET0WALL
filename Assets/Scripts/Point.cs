@@ -12,6 +12,7 @@ public class Point : MonoBehaviour
     public ParticleSystem particle;
     public SpriteRenderer renderer_;
     public bool once = true;
+    public AudioClip clip;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class Point : MonoBehaviour
             var dur = particle.main.duration;
             em.enabled = true;
             particle.Play();
+            AudioManager.instance.playSFX(clip);
 
             once = false;
             Destroy(renderer_);

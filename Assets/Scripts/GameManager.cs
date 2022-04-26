@@ -48,13 +48,26 @@ public class GameManager : MonoBehaviour
     public void replay()
     {
         resetGame();
+        Invoke("goGameScene", 0.8f);
+    }
+
+    public void goGameScene()
+    {
         SceneManager.LoadScene("gamescene");
     }
+
+
 
     public void gotoMainScene()
     {
         resetGame();
+        Invoke("goStartScene", 0.8f);
+    }
+
+    public void goStartScene()
+    {
         SceneManager.LoadScene("StartScene");
+
     }
 
     public void resetGame()
