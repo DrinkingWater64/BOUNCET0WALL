@@ -52,7 +52,7 @@ public class PauseMenu : MonoBehaviour
             button.SetActive(false);
             pauseMenu.SetActive(true);
 
-            if (onTutorial != null)
+            if (onTutorial != null && PlayerPrefs.GetString("TutorialStatus") == "false")
             {
                 onTutorial(this);
             }
@@ -63,7 +63,7 @@ public class PauseMenu : MonoBehaviour
             pauseMenu.SetActive(false);
             isPaused = false;
             button.SetActive(true);
-            if (onTutorial != null)
+            if (onTutorial != null && PlayerPrefs.GetString("TutorialStatus") == "false")
             {
                 onTutorial(this);
             }

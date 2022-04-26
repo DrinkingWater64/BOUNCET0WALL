@@ -47,7 +47,7 @@ public class Tutorial : MonoBehaviour
     {
         Debug.Log("listened when tapped score");
         Debug.Log("listened when " + obj.isPaused);
-        if(obj.isPaused == true)
+        if(obj.isPaused == true && PlayerPrefs.GetString("TutorialStatus") == "false")
         {
             pauseText1.SetActive(false);
             pauseText2.SetActive(true);
