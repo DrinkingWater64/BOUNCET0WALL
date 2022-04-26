@@ -15,15 +15,24 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Player.onTutorial += handleButtonInteraction;
         pauseMenu.SetActive(false);
-        pauseButton.GetComponent<Button>().interactable = false;
         isPaused = false;
+        if (PlayerPrefs.GetString("TutorialStatus") == "false")
+        {
+            Player.onTutorial += handleButtonInteraction;
+            pauseButton.GetComponent<Button>().enabled = false;
+
+        }
+        else
+        {
+            pauseButton.GetComponent<Button>().enabled = true;
+
+        }
     }
 
     private void handleButtonInteraction(Player obj)
     {
-        pauseButton.GetComponent<Button>().interactable = true;
+        pauseButton.GetComponent<Button>().enabled = true;
         Player.onTutorial -= handleButtonInteraction;
     }
 
